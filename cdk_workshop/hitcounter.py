@@ -20,7 +20,8 @@ class HitCounter(Construct):
 
         self._table = ddb.Table(
             self, 'Hits',
-            partition_key={'name': 'path', 'type': ddb.AttributeType.STRING}
+            partition_key={'name': 'path', 'type': ddb.AttributeType.STRING},
+            encryption=ddb.TableEncryption.AWS_MANAGED,
         )
 
         self._handler = _lambda.Function(
@@ -36,3 +37,6 @@ class HitCounter(Construct):
 
         self._table.grant_read_write_data(self.handler)
         downstream.grant_invoke(self.handler)
+
+
+   
