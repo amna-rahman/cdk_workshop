@@ -14,7 +14,7 @@ class WorkshopPipelineStack(Stack):
         # PIPELINE CODE HERE...
 
         deploy = WorkshopPipelineStage(self, "Deploy")
-        deploy_stage = pipelines.add_stage(deploy)
+        deploy_stage = pipeline.add_stage(deploy)
         deploy_stage.add_post(
             pipelines.ShellStep(
                 "TestViewerEndpoint",
